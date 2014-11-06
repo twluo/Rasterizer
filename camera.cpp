@@ -15,6 +15,9 @@ void Camera::set(Vector3& a, Vector3& b, Vector3& c) {
 	up = &c;
 	Matrix4 translation;
 	Matrix4 rotation;
+	Matrix4 m;
+	Matrix4 camera;
+	m.makeTranslate(0, 0, -20);
 	translation.identity();
 	rotation.identity();
 	Vector3* x = new Vector3(0.0, 0.0, 0.0);
@@ -35,6 +38,7 @@ void Camera::set(Vector3& a, Vector3& b, Vector3& c) {
 	}
 	rotation.transpose();
 	world2camera = rotation * translation;
+	world2camera = world2camera *m;
 
 }
 

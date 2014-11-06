@@ -15,8 +15,8 @@ void Projection::set(double fov, double aspect, double near, double far) {
 	temp = (near + far) / (near - far);
 	camera2projection.set(2, 2, temp);
 	temp = (2 * near*far) / (near - far);
-	camera2projection.set(3, 2, temp);
-	camera2projection.set(2, 3, -1);
+	camera2projection.set(2, 3, temp);
+	camera2projection.set(3, 2, -1);
 	camera2projection.set(3, 3, 0);
 }
 

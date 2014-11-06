@@ -36,8 +36,10 @@ void loadData()
 	bunny->load();
 	dragon->load();
 	house->load();
-
+	projection.set(60.0, double(window_width) / double(window_height), 1.0, 1000.0);
+	viewport.set(0, 0, double(window_width), double(window_height));
 	camera.set(Vector3(0.0, 10.0, 10.0), Vector3(0, 0, 0), Vector3(0, 1, 0));
+	object.reset();
 }
 
 // Clear frame buffer
@@ -68,15 +70,20 @@ void rasterize()
 	Matrix4 m;
 	cout << "TEST" << endl;
 	m.identity();
-	m = viewport.getMatrix() * projection.getMatrix() * camera.getMatrix() * object.getMatrix();
+	object.getMatrix().print("AD");
+	m = projection.getMatrix() * camera.getMatrix() * object.getMatrix();
+	m.print("ASD");
 	Vector3 *temp = new Vector3(0,0,0);
-	Vector4 *temp4 = new Vector4(0,0,0,0);
+	Vector4 *temp4 = new Vector4(1,0,0,0);
 	if (show == 0) {
-		for (unsigned i = 0; i < house->color.size(); i++) {
-			*temp = house->color[i];
+		for (unsigned i = 0; i < house->points.size(); i++) {
+			*temp = house->points[i];
 			temp4->set(*temp);
 			*temp4 = m * *temp4;
-			drawPoint(temp4->get(0), temp4->get(1), 255, 0, 0);
+			temp4->dehomogenize();
+			*temp4 = viewport.getMatrix() * *temp4;
+			//drawPoint(temp4->get(0), temp4->get(1), 255, 0, 0);
+			cout <<"AFTER" << temp4->get(0) << " " << temp4->get(1) << endl;
 		}
 	}
 }
@@ -99,7 +106,7 @@ void reshapeCallback(int new_width, int new_height)
 	delete[] pixels;
 	pixels = new float[window_width * window_height * 3];
 	projection.set(60.0, double(window_width) / double(window_height), 1.0, 1000.0);
-	viewport.set(0, 0, double(new_width), double(new_height));
+	viewport.set(0, 0, double(window_width), double(window_height));
 	displayCallback();
 }
 
