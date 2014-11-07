@@ -64,10 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\camera.cpp" />
     <ClCompile Include="..\bunny.cpp" />
+    <ClCompile Include="..\camera.cpp" />
     <ClCompile Include="..\dragon.cpp" />
     <ClCompile Include="..\house.cpp" />
+    <ClCompile Include="..\light.cpp" />
     <ClCompile Include="..\Matrix4.cpp" />
     <ClCompile Include="..\object.cpp" />
     <ClCompile Include="..\projection.cpp" />
@@ -77,10 +78,11 @@
     <ClCompile Include="..\window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\camera.h" />
     <ClInclude Include="..\bunny.h" />
+    <ClInclude Include="..\camera.h" />
     <ClInclude Include="..\dragon.h" />
     <ClInclude Include="..\house.h" />
+    <ClInclude Include="..\light.h" />
     <ClInclude Include="..\Matrix4.h" />
     <ClInclude Include="..\object.h" />
     <ClInclude Include="..\projection.h" />

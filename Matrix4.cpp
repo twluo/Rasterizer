@@ -104,7 +104,9 @@ Vector4& Matrix4::operator*(const Vector4& v) {
 
 		temp->setValue( row, sum);
 	}
-	return *temp;
+	vec = *temp;
+	delete temp;
+	return vec;
 }
 
 void Matrix4::makeRotateX(double angle) {
@@ -185,4 +187,5 @@ void Matrix4::print(std::string cmt) {
 
 void Matrix4::set(int x, int y, double value) {
 	m[x][y] = value;
+	//asdas
 }

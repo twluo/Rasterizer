@@ -21,9 +21,10 @@ public:
 	std::vector<Vector3> points;
 	std::vector<Vector3> normals;
 	double sX, sY, sZ, lX, lY, lZ;
+	Vector3 *color;
 	Matrix4& getMatrix();
 	void draw(double, double);
-	void load();
+	void load(double);
 	void scale(double);
 	void move(double, double, double);
 	void reset();

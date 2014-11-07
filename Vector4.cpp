@@ -2,6 +2,9 @@
 #include <iostream>
 #include "Vector4.h"
 
+Vector4::Vector4() {
+
+}
 Vector4::Vector4(double x, double y, double z, double w) {
 	v[0] = x;
 	v[1] = y;
@@ -65,4 +68,20 @@ void Vector4::set(Vector3 temp) {
 	v[1] = temp.getY();
 	v[2] = temp.getZ();
 	v[3] = 1;
+
+}
+double Vector4::length() {
+	double len = 0;
+
+	for (int i = 0; i < 3; i++) {
+		len += v[i] * v[i];
+	}
+
+	return sqrt(len);
+}
+void Vector4::normalize() {
+	v[0] = v[0] / length();
+	v[1] = v[1] / length();
+	v[2] = v[2] / length();
+	v[3] = v[3] / length();
 }

@@ -8,6 +8,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include "object.h"
 
 Bunny::Bunny()
 {
@@ -30,20 +31,25 @@ Matrix4& Bunny::getMatrix()
 void Bunny::draw(double width, double height) {
 	glBegin(GL_POINTS);
 	Matrix4 mat;
-	for (unsigned i = 0; i < normals.size(); i++) {
+	for (int i = 0; i < normals.size(); i++) {
 		glNormal3d(normals[i].getX(), normals[i].getY(), normals[i].getZ());
 		glColor3d(normals[i].getX(), normals[i].getY(), normals[i].getZ());
 		glVertex3d(points[i].getX(), points[i].getY(), points[i].getZ());
 	}
 	glEnd();
+	
 }
 
 
-void Bunny::load() {
+void Bunny::load(double aspect) {
 	std::ifstream file;
 	Vector3* normal;
 	Vector3* point;
-	file.open("bunny.xyz");
+	file.open("C:\\Users\\Tony\\Google Drive\\CSE 167\\Rasterizer\\Rasterizer\\bunny.xyz");
+	if (file.is_open()) {
+		std::cout << "OPENED" << std::endl;
+	}
+	color = new Vector3(1, 0, 1);
 	normals.clear();
 	points.clear();
 	sX = 10;
@@ -73,6 +79,29 @@ void Bunny::load() {
 		if (z > lZ)
 			lZ = z;
 	}
+	double scaleValue;
+	double Y = 33 * tan(30 * M_PI / 180);
+	double X = Y * aspect;
+	 x = lX - sX;
+	 y = lY - sY;
+	 z = lZ - sZ;
+	if (x < y){
+		scaleValue = Y / y;
+		for (unsigned i = 0; i < points.size(); i++)
+			points[i].scale(scaleValue);
+	}
+	else {
+		scaleValue = X / x;
+		for (unsigned i = 0; i < points.size(); i++)
+			points[i].scale(scaleValue);
+	}
+	x = (lX + sX)*scaleValue;
+	y = (lY + sY)*scaleValue;
+	z = (lZ + sZ)*scaleValue;
+	for (unsigned i = 0; i < points.size(); i++)
+		points[i].translate(-x/2,-y/2,-z/2);
+	x = X / 8;
+	y = Y / 2;
 }
 void Bunny::reset() {
 	model2world.identity();

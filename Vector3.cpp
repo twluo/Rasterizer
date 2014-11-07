@@ -4,6 +4,9 @@
 #include <cmath>
 #include "Vector3.h"
 
+Vector3::Vector3() {
+
+}
 Vector3::Vector3(double x, double y, double z) {
 	v[0] = x;
 	v[1] = y;

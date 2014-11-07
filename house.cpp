@@ -113,8 +113,10 @@ void House::load() {
 	Vector3* point;
 	for (int i = 0; i < nVerts; i++) {
 		int x = i;
-		int y = i++;
-		int z = i++;
+		i = i + 1;
+		int y = i;
+		i = i + 1;
+		int z = i;
 		normal = new Vector3(colors[x], colors[y], colors[z]);
 		point = new Vector3(vertices[x], vertices[y], vertices[z]);
 		color.push_back(*normal);

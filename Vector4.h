@@ -10,19 +10,20 @@ protected:
 
 public:
 
-	
+	Vector4();
 	Vector4(double, double, double, double);
 	Vector4& operator+(const Vector4&);
 	Vector4& operator-(const Vector4&);
 	double getValue(int);
 	void dehomogenize();
 	void print(std::string);
-
+	double length();
 	void setValue(int, double);
 	void translate(double, double, double);
 	void reset();
 	double get(int);
 	void set(Vector3);
+	void normalize();
 };
 
 #endif

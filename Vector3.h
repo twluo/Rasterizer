@@ -10,6 +10,7 @@ class Vector3 {
 		double v[3];   // array elements
 
 	public:
+		Vector3();
 		Vector3(double, double, double);
 		Vector3& operator+(const Vector3&);
 		Vector3& operator-(const Vector3&);
@@ -20,7 +21,6 @@ class Vector3 {
 		double length();
 		void normalize();
 		void print(std::string);
-
 		double getX();
 		double getY();
 		double getZ();

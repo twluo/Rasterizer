@@ -8,6 +8,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include "object.h"
 
 Dragon::Dragon()
 {
@@ -59,11 +60,11 @@ void Dragon::draw(double width, double height) {
 }
 
 
-void Dragon::load() {
+void Dragon::load(double aspect) {
 	std::ifstream file;
 	Vector3* normal;
 	Vector3* point;
-	file.open("dragon.xyz");
+	file.open("C:\\Users\\Tony\\Google Drive\\CSE 167\\Rasterizer\\Rasterizer\\dragon.xyz");
 	normals.clear();
 	points.clear();
 	sX = 10;
@@ -73,6 +74,7 @@ void Dragon::load() {
 	lY = 0;
 	lZ = 0;
 	std::cout << "Read" << std::endl; 
+	color = new Vector3(1, 0, 1);
 	double x, y, z, nX, nY, nZ;
 	while (file >> x >> y >> z >> nX >> nY >> nZ) {
 		normal = new Vector3(nX, nY, nZ);
@@ -93,6 +95,29 @@ void Dragon::load() {
 		if (z > lZ)
 			lZ = z;
 	}
+	double scaleValue;
+	double Y = 33 * tan(30 * M_PI / 180);
+	double X = Y * aspect;
+	x = lX - sX;
+	y = lY - sY;
+	z = lZ - sZ;
+	if (x < y){
+		scaleValue = Y / y;
+		for (unsigned i = 0; i < points.size(); i++)
+			points[i].scale(scaleValue);
+	}
+	else {
+		scaleValue = X / x;
+		for (unsigned i = 0; i < points.size(); i++)
+			points[i].scale(scaleValue);
+	}
+	x = (lX + sX)*scaleValue;
+	y = (lY + sY)*scaleValue;
+	z = (lZ + sZ)*scaleValue;
+	for (unsigned i = 0; i < points.size(); i++)
+		points[i].translate(-x / 2, -y / 2, -z / 2);
+	x = X / 8;
+	y = Y / 2;
 }
 void Dragon::reset() {
 	model2world.identity();

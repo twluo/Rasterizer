@@ -30,9 +30,6 @@
     <ClCompile Include="..\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\bunny.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\dragon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bunny.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,9 +68,6 @@
     <ClInclude Include="..\window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\bunny.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\dragon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bunny.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

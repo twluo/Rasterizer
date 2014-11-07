@@ -20,10 +20,11 @@ public:
 	Bunny();   // Constructor
 	std::vector<Vector3> points;
 	std::vector<Vector3> normals;
+	Vector3 *color;
 	double sX, sY, sZ, lX, lY, lZ;
 	Matrix4& getMatrix();
 	void draw(double, double);
-	void load();
+	void load(double);
 	void scale(double);
 	void move(double, double, double);
 	void reset();
