@@ -22,8 +22,11 @@ public:
 	void translate(double, double, double);
 	void reset();
 	double get(int);
-	void set(Vector3);
+	void setPoint(Vector3);
+	void setVector(Vector3);
 	void normalize();
+	double dot(const Vector4&, const Vector4&);
+	void set(double, double, double, double);
 };
 
 #endif

@@ -11,10 +11,10 @@
 Light::Light() {
 
 }
-Light::Light(Vector3 color, double brightness, Vector3 pos) {
-	color = color;
-	brightness = brightness;
-	pos = pos;
+Light::Light(Vector3 c, double b, Vector3 p) {
+	color = c;
+	brightness = b;
+	pos = p;
 }
 Vector3 Light::getColor() {
 	return color;
@@ -22,15 +22,15 @@ Vector3 Light::getColor() {
 double Light::getBrightness(){
 	return brightness;
 }
-void Light::setColor(Vector3 color){
-	color = color;
+void Light::setColor(Vector3 cr){
+	color = cr;
 }
-void Light::setBrightness(double brightness){
-	brightness = brightness;
+void Light::setBrightness(double b){
+	brightness = b;
 }
 Vector3 Light::getPos(){
 	return pos;
 }
-void Light::setPos(Vector3 pos){
-	pos = pos;
+void Light::setPos(Vector3 p){
+	pos = p;
 }

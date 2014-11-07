@@ -3,10 +3,12 @@
 #include <stdio.h>
 #include <cmath>
 #include "Vector3.h"
+#include "Vector4.h"
 
 Vector3::Vector3() {
 
 }
+
 Vector3::Vector3(double x, double y, double z) {
 	v[0] = x;
 	v[1] = y;
@@ -14,19 +16,19 @@ Vector3::Vector3(double x, double y, double z) {
 }
 
 Vector3& Vector3::operator+(const Vector3& v2) {
-	Vector3 *temp = new Vector3(0,0,0);
+	Vector3 temp;
 	for (int i = 0; i < 3; i++) {
-		temp->v[i] = v[i] + v2.v[i];
+		temp.v[i] = v[i] + v2.v[i];
 	}
-	return *temp;
+	return temp;
 }
 
 Vector3& Vector3::operator-(const Vector3& v2) {
-	Vector3 *temp = new Vector3(0, 0, 0);
+	Vector3 temp;
 	for (int i = 0; i < 3; i++) {
-		temp->v[i] = v[i] - v2.v[i];
+		temp.v[i] = v[i] - v2.v[i];
 	}
-	return *temp;
+	return temp;
 }
 
 
@@ -53,12 +55,13 @@ double Vector3::dot(const Vector3& v1, const Vector3& v2) {
 }
 
 Vector3 Vector3::cross(const Vector3& v1, const Vector3& v2) {
-	Vector3 *temp = new Vector3(0, 0, 0);
-	temp->v[0] = (v1.v[1] * v2.v[2]) - (v1.v[2] * v2.v[1]);
-	temp->v[1] = - (v1.v[0] * v2.v[2]) + (v1.v[2] * v2.v[0]);
-	temp->v[2] = (v1.v[0] * v2.v[1]) - (v1.v[1] * v2.v[0]);
-
-	return *temp; // WHAT EVEN
+	Vector3 temp;
+	
+	double x= (v1.v[1] * v2.v[2]) - (v1.v[2] * v2.v[1]);
+	double y = - (v1.v[0] * v2.v[2]) + (v1.v[2] * v2.v[0]);
+	double z = (v1.v[0] * v2.v[1]) - (v1.v[1] * v2.v[0]);
+	temp.set(x, y, z);
+	return temp;
 }
 
 double Vector3::length() {
@@ -76,8 +79,8 @@ void Vector3::normalize() {
 }
 
 void Vector3::print(std::string cmt) {
-	std::cout << cmt << std::endl;
-	printf("%2.2f, %2.2f, %2.2f \n", v[0], v[1], v[2]);
+	std::cout << cmt << "\n" << v[0] << ", " << v[1] << ", " << v[2]
+		<<  std::endl;
 }
 
 double Vector3::getX() {
@@ -123,4 +126,16 @@ void Vector3::set(double x, double y, double z) {
 	v[0] = x;
 	v[1] = y;
 	v[2] = z;
+}
+
+Vector3 Vector3::comp(Vector3 x, Vector3 y) {
+	Vector3 temp;
+	temp.set(x.v[0] * y.v[0], x.v[1] * y.v[1], x.v[2] * y.v[2]);
+	return temp;
+}
+
+void Vector3::set(Vector3 temp) {
+	v[0] = temp.v[0];
+	v[1] = temp.v[1];
+	v[2] = temp.v[2];
 }

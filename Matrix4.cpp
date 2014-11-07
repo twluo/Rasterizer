@@ -94,18 +94,11 @@ Matrix4& Matrix4::operator*(const Matrix4& m2) {
 Vector4& Matrix4::operator*(const Vector4& v) {
 
 	Vector4 vec = v;
-	Vector4* temp = new Vector4(0, 0, 0, 1);
-
-	for (int row = 0; row < 4; row++) {
-		double sum = 0;
-		for (int col = 0; col < 4; col++) {
-			sum += m[row][col] * vec.getValue(col);
-		}
-
-		temp->setValue( row, sum);
-	}
-	vec = *temp;
-	delete temp;
+	double x = m[0][0] * vec.getValue(0) + m[0][1] * vec.getValue(1) + m[0][2] * vec.getValue(2) + m[0][3] * vec.getValue(3);
+	double y = m[1][0] * vec.getValue(0) + m[1][1] * vec.getValue(1) + m[1][2] * vec.getValue(2) + m[1][3] * vec.getValue(3);
+	double z = m[2][0] * vec.getValue(0) + m[2][1] * vec.getValue(1) + m[2][2] * vec.getValue(2) + m[2][3] * vec.getValue(3);
+	double w = m[3][0] * vec.getValue(0) + m[3][1] * vec.getValue(1) + m[3][2] * vec.getValue(2) + m[3][3] * vec.getValue(3);
+	vec.set(x,y,z,w);
 	return vec;
 }
 

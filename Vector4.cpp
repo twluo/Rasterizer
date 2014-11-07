@@ -63,12 +63,18 @@ double Vector4::get(int x) {
 	return v[x];
 }
 
-void Vector4::set(Vector3 temp) {
+void Vector4::setPoint(Vector3 temp) {
 	v[0] = temp.getX();
 	v[1] = temp.getY();
 	v[2] = temp.getZ();
 	v[3] = 1;
+}
 
+void Vector4::setVector(Vector3 temp) {
+	v[0] = temp.getX();
+	v[1] = temp.getY();
+	v[2] = temp.getZ();
+	v[3] = 0;
 }
 double Vector4::length() {
 	double len = 0;
@@ -83,5 +89,20 @@ void Vector4::normalize() {
 	v[0] = v[0] / length();
 	v[1] = v[1] / length();
 	v[2] = v[2] / length();
-	v[3] = v[3] / length();
+}
+
+double Vector4::dot(const Vector4& v1, const Vector4& v2) {
+	double result = 0;
+
+	for (int i = 0; i < 3; i++) {
+		result += (v1.v[i] * v2.v[i]);
+	}
+
+	return result;
+}
+void Vector4::set(double x, double y, double z, double w) {
+	v[0] = x;
+	v[1] = y;
+	v[2] = z;
+	v[3] = w;
 }

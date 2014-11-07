@@ -29,7 +29,8 @@ class Vector3 {
 		double get(int);
 		void orbit(double);
 		void set(double, double, double);
-
+		Vector3 comp(Vector3, Vector3);
+		void set(Vector3);
 };
 
 #endif
